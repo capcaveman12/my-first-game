@@ -5,6 +5,9 @@ using UnityEngine;
 public class Player : MonoBehaviour
 {
     // Start is called before the first frame update
+    // player speed//
+    [SerializeField]
+    float _speed = 3.5f;
     void Start()
     {
         // take current position set to 0 at start of the game//
@@ -14,7 +17,9 @@ public class Player : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        transform.Translate(Vector3.right * 5 * Time.deltaTime);
+        float horizontalInput = Input.GetAxis("Horizontal");
+
+        transform.Translate(Vector3.right * horizontalInput * _speed * Time.deltaTime);
 
     }
 }
