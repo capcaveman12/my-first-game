@@ -8,6 +8,8 @@ public class Player : MonoBehaviour
     // player speed//
     [SerializeField]
     float _speed = 3.5f;
+    [SerializeField]
+    private GameObject _laserPrefab;
     void Start()
     {
         // take current position set to 0 at start of the game//
@@ -18,6 +20,11 @@ public class Player : MonoBehaviour
     void Update()
     {
         CalculateMovement();
+
+        if (Input.GetKeyDown(KeyCode.Space))
+        {
+            Instantiate(_laserPrefab, transform.position, Quaternion.identity);
+        }
     }
     
     void CalculateMovement()
