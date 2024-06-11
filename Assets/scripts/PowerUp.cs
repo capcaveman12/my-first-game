@@ -2,12 +2,14 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Enemy : MonoBehaviour
+public class PowerUp : MonoBehaviour
 {
     // Start is called before the first frame update
     [SerializeField]
-    private float _speed = 1.0f;
+    float _speed = 3.0f;
 
+    [SerializeField]
+    private int _powerUpId;
     void Start()
     {
         
@@ -16,12 +18,11 @@ public class Enemy : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        float _position = transform.position.y;
         transform.Translate(Vector3.down * _speed * Time.deltaTime);
 
-        if (_position <= -3.8f)
+        if (transform.position.y < -4.5)
         {
-            transform.position = new Vector3(Random.Range(-9.3f, 9.3f), 6.0f, 0);
+            Destroy(this.gameObject);
         }
     }
 
@@ -30,18 +31,25 @@ public class Enemy : MonoBehaviour
         if (other.tag == "Player")
         {
             Player player = other.transform.GetComponent<Player>();
-
             if (player != null)
             {
-                player.Damage();
+                if(_powerUpId == 0)
+                {
+                    player.ActivateTripleShot();
+                }
+                else if(_powerUpId == 1)
+                {
+                    player.ActivateShield();
+                }
+                else if(_powerUpId == 2)
+                {
+                    player.SpeedUp();
+                }
             }
-
-            Destroy(this.gameObject);
-        }
-
-        if (other.tag == "laser")
-        {
-            Destroy(other.gameObject);
+            else
+            {
+                Debug.Log("player is null");
+            }
             Destroy(this.gameObject);
         }
     }

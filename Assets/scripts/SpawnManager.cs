@@ -7,12 +7,19 @@ public class SpawnManager : MonoBehaviour
     // Start is called before the first frame update
     [SerializeField]
     private GameObject _enemyPrefab;
+
     [SerializeField]
     private GameObject _enemyContainer;
+
     private bool _stopSpawn = false;
+
+    [SerializeField]
+    private GameObject[] _powerUps;
+
     void Start()
     {
         StartCoroutine(SpawnRoutine());
+        StartCoroutine(SpawnPowerUp());
     }
 
     // Update is called once per frame
@@ -30,8 +37,19 @@ public class SpawnManager : MonoBehaviour
             _NewEnemy.transform.parent = _enemyContainer.transform;
         }
     }
+
     public void OnPlayerDeath()
     {
         _stopSpawn = true;
+    }
+
+    IEnumerator SpawnPowerUp()
+    {
+        while (_stopSpawn == false)
+        {
+            yield return new WaitForSeconds(Random.Range(7.0f, 20.0f));
+            Vector3 powerUpPos = new Vector3(Random.Range(-8.0f, 8.0f), 7, 0);
+            Instantiate(_powerUps[UnityEngine.Random.Range(0, 3)], powerUpPos, Quaternion.identity);
+        }
     }
 }
