@@ -38,15 +38,26 @@ public class Player : MonoBehaviour
 
     private float _speedMultiplier = 2.0f;
 
+    [SerializeField]
+    private int _score;
+
+    UIManager _uIManager;
+
     void Start()
     {
         // take current position set to 0 at start of the game//
         transform.position = new Vector3(0, 0, 0);
+        _uIManager = GameObject.Find("Canvas").GetComponent<UIManager>();
         _SpawnManager = GameObject.Find("spawnmanager").GetComponent < SpawnManager>();
 
         if (_SpawnManager == null)
         {
             Debug.LogError("The spawnmanager is null");
+        }
+
+        if(_uIManager == null)
+        {
+            Debug.LogError("The UI Manager is null");
         }
     }
 
@@ -163,5 +174,11 @@ public class Player : MonoBehaviour
     {
         _isShieldActive = true;
         transform.GetChild(0).gameObject.SetActive(true);
+    }
+
+    public void ScorePlus(int points)
+    {
+        _score = _score + 10;
+        _uIManager.NewScore(_score);
     }
 }

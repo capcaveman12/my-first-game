@@ -8,9 +8,11 @@ public class Enemy : MonoBehaviour
     [SerializeField]
     private float _speed = 1.0f;
 
+    private Player _player;
+
     void Start()
     {
-        
+        _player = GameObject.FindWithTag("Player").GetComponent<Player>();
     }
 
     // Update is called once per frame
@@ -27,9 +29,10 @@ public class Enemy : MonoBehaviour
 
     private void OnTriggerEnter2D(Collider2D other)
     {
+        Player player = GameObject.FindWithTag("Player").GetComponent<Player>();
         if (other.tag == "Player")
         {
-            Player player = other.transform.GetComponent<Player>();
+            
 
             if (player != null)
             {
@@ -41,6 +44,10 @@ public class Enemy : MonoBehaviour
 
         if (other.tag == "laser")
         {
+            if (_player != null)
+            {
+                _player.ScorePlus(10);
+            }
             Destroy(other.gameObject);
             Destroy(this.gameObject);
         }
