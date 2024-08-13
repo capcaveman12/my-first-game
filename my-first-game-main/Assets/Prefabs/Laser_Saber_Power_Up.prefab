@@ -15,7 +15,7 @@ GameObject:
   - component: {fileID: -551310227385519331}
   m_Layer: 0
   m_Name: Laser_Saber_Power_Up
-  m_TagString: Untagged
+  m_TagString: Collectible
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
