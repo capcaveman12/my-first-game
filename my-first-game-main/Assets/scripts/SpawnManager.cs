@@ -30,7 +30,7 @@ public class SpawnManager : MonoBehaviour
      public int enemiesLeft = 10;
 
     [SerializeField]
-     public int level = 1;
+     public static int level = 1;
 
     [SerializeField]
     public int enemiesSpawned;

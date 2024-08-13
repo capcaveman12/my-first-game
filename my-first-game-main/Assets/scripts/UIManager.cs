@@ -37,7 +37,7 @@ public class UIManager : MonoBehaviour
     [SerializeField]
     private Text _thrusterWarningText;
 
-    public int wave = 1;
+    public int wave;
 
     [SerializeField]
     private Text _waveText;
@@ -68,11 +68,12 @@ public class UIManager : MonoBehaviour
 
         _thrusterWarningText.gameObject.SetActive(false);
 
-        
-       
+        wave = SpawnManager.level;
 
-        
+        _waveText.text = wave.ToString();
+
        _enemiesText.text = "Enemies: " + 10;
+
         WaveUpdate();
 
         StartCoroutine(WaveDisplay());
