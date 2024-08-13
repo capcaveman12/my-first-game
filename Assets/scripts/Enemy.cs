@@ -6,13 +6,18 @@ public class Enemy : MonoBehaviour
 {
     // Start is called before the first frame update
     [SerializeField]
-    private float _speed = 1.0f;
+    private float _speed = 5.0f;
 
-    private Player _player;
+    Player _player;
 
     void Start()
     {
-        _player = GameObject.FindWithTag("Player").GetComponent<Player>();
+        _player = GameObject.Find("Player").GetComponent<Player>();
+
+        if(_player == null)
+        {
+            Debug.LogError("_player is null");
+        }
     }
 
     // Update is called once per frame
@@ -29,10 +34,10 @@ public class Enemy : MonoBehaviour
 
     private void OnTriggerEnter2D(Collider2D other)
     {
-        Player player = GameObject.FindWithTag("Player").GetComponent<Player>();
+       
         if (other.tag == "Player")
         {
-            
+            Player player = other.transform.GetComponent<Player>();
 
             if (player != null)
             {
@@ -46,6 +51,7 @@ public class Enemy : MonoBehaviour
         {
             if (_player != null)
             {
+                
                 _player.ScorePlus(10);
             }
             Destroy(other.gameObject);

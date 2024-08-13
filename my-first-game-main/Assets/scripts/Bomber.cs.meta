@@ -1,0 +1,18 @@
+fileFormatVersion: 2
+guid: 800e7c0459cc2d94da6fbdccd9e9cad1
+MonoImporter:
+  externalObjects: {}
+  serializedVersion: 2
+  defaultReferences:
+  - _explosionSound: {instanceID: 0}
+  - _audioSource: {instanceID: 0}
+  - _enemyLaserSound: {instanceID: 0}
+  - _laserAudioSource: {instanceID: 0}
+  - _enemyLaserPrefab: {fileID: 8382091520990204235, guid: 25d598fb0930e304ca8cda4d75451cb9,
+      type: 3}
+  - _bomb: {fileID: 7904535177839242072, guid: cb4a826ce0414134980fc997b3b34d9a, type: 3}
+  executionOrder: 0
+  icon: {instanceID: 0}
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 

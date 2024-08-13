@@ -29,9 +29,6 @@ public class Player : MonoBehaviour
     [SerializeField]
     private GameObject _tripleshotPrefab;
 
-    [SerializeField]
-    private GameObject _shieldPrefab;
-
     private bool _isShieldActive = false;
 
     private bool _isSpeedActive = false;
@@ -139,6 +136,8 @@ public class Player : MonoBehaviour
 
         _lives--;
 
+        _uIManager.UpdateLives(_lives);
+
         if(_lives < 1)
         {
             _SpawnManager.OnPlayerDeath();
@@ -178,7 +177,7 @@ public class Player : MonoBehaviour
 
     public void ScorePlus(int points)
     {
-        _score = _score + 10;
+        _score += points;
         _uIManager.NewScore(_score);
     }
 }
