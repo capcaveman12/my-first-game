@@ -37,6 +37,8 @@ public class PowerUp : MonoBehaviour
         {
             TowardPlayer();
         }
+
+        _powerUpId = SpawnManager.powerId;
     }
 
     private void OnTriggerEnter2D(Collider2D other)

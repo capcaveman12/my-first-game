@@ -96,6 +96,9 @@ public class Player : MonoBehaviour
 
     public static List<GameObject> lasers = new List<GameObject>();
 
+    public delegate void PlayerDeath();
+    public static event PlayerDeath playerDeath;
+
     void Start()
     {
         _camAnim = GameObject.Find("Main Camera").GetComponent<Animator>();
@@ -383,6 +386,11 @@ public class Player : MonoBehaviour
         Destroy(transform.GetChild(3).gameObject);
         Destroy(this.gameObject, 2.8f);
         Destroy(GameObject.FindGameObjectWithTag("enemy").gameObject);
+
+        if(playerDeath != null)
+        {
+            playerDeath();
+        }
     }
 
     private void HurtThreeLives()

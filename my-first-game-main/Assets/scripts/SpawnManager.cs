@@ -15,7 +15,7 @@ public class SpawnManager : MonoBehaviour
     static public bool _stopSpawn = false;
 
     [SerializeField]
-    private GameObject[] _powerUps;
+    public GameObject[] _powerUps;
 
     [SerializeField]
     private GameObject _ammoPlus;
@@ -30,7 +30,7 @@ public class SpawnManager : MonoBehaviour
      public int enemiesLeft = 10;
 
     [SerializeField]
-     public static int level = 1;
+     public static int level;
 
     [SerializeField]
     public int enemiesSpawned;
@@ -49,10 +49,17 @@ public class SpawnManager : MonoBehaviour
     [SerializeField]
     GameObject _theBoss;
 
+    [SerializeField]
+    GameObject _asteroid;
+
+    public static int powerId;
+
     private void Start()
     {
-        
+        Instantiate(_asteroid, new Vector3(0, 0, 0), Quaternion.identity);   
         _uiMan = GameObject.Find("Canvas").GetComponent<UIManager>();
+
+        Player.playerDeath += OnPlayerDeath;
     }
 
 
@@ -136,6 +143,9 @@ public class SpawnManager : MonoBehaviour
         _uiMan.EnemyUpdate();
         _uiMan.WaveUpdate();
         _uiMan.StartCoroutine("WaveDisplay");
+        GameObject _boss = Instantiate(_theBoss, new Vector3(0, 10, 0), Quaternion.identity);
+        _boss.transform.parent = _enemyContainer.transform;
+        enemiesSpawned++;
         while (_stopSpawn == false && enemiesSpawned >= 40 && enemiesSpawned < 51)
         {
             yield return new WaitForSeconds(5.0f);
@@ -150,6 +160,8 @@ public class SpawnManager : MonoBehaviour
     {
         _stopSpawn = true;
         StopAllCoroutines();
+        enemiesSpawned = 0;
+        enemiesLeft = 10;
         
     }
 
@@ -159,7 +171,8 @@ public class SpawnManager : MonoBehaviour
         {
             yield return new WaitForSeconds(Random.Range(7.0f, 10.0f));
             Vector3 powerUpPos = new Vector3(Random.Range(-8.0f, 8.0f), 7, 0);
-            Instantiate(_powerUps[Random.Range(0, 3)], powerUpPos, Quaternion.identity);
+            powerId = Random.Range(0, 3);
+            Instantiate(_powerUps[powerId], powerUpPos, Quaternion.identity);
         }
     }
 

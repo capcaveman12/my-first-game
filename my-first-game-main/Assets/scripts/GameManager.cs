@@ -7,26 +7,31 @@ using UnityEngine.UI;
 public class GameManager : MonoBehaviour
 {
     [SerializeField]
-    private bool _isGameOver = false;
+    public static bool isGameOver = false;
 
 
+    private void Start()
+    {
+        Player.playerDeath += GameOver;
+    }
     // Update is called once per frame
     void Update()
     {
-        if (Input.GetKeyDown(KeyCode.R) && _isGameOver == true)
+        if (Input.GetKeyDown(KeyCode.R) && isGameOver == true)
         {
-            SceneManager.LoadScene(1);
+            SceneManager.LoadScene(0);
+
         }
 
         if (Input.GetKeyDown(KeyCode.Escape))
         {
-            SceneManager.LoadScene(0);
+            SceneManager.LoadScene(1);
         }
     }
 
     public void GameOver()
     {
-        _isGameOver = true;
+        isGameOver = true;
     }
 
 }

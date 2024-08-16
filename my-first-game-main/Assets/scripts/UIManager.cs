@@ -113,6 +113,7 @@ public class UIManager : MonoBehaviour
             _gameManager.GameOver();
 
             GameOverSequence();
+            SpawnManager._stopSpawn = true;
         }
     }
 

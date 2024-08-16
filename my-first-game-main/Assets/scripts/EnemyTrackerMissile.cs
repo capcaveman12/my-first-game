@@ -28,10 +28,13 @@ public class EnemyTrackerMissile : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        transform.position = Vector3.MoveTowards(transform.position, _player.transform.position, _speed * Time.deltaTime);
-        transform.up = _player.transform.position;
+        if (_player != null)
+        {
+            transform.position = Vector3.MoveTowards(transform.position, _player.transform.position, _speed * Time.deltaTime);
+            transform.up = _player.transform.position;
 
-        _missileAudio.clip = _missileAudioExplosion;
+            _missileAudio.clip = _missileAudioExplosion;
+        }
 
     }
 
