@@ -9,7 +9,6 @@ public class EnemyTrackerMissile : MonoBehaviour
 
     float _speed = 3.0f;
 
-    Animator _missileAnim;
 
     [SerializeField]
     AudioSource _missileAudio;
@@ -21,7 +20,6 @@ public class EnemyTrackerMissile : MonoBehaviour
     void Start()
     {
         _player = GameObject.FindGameObjectWithTag("Player");
-        _missileAnim = GetComponent<Animator>();
         transform.up = _player.transform.position;
     }
 
@@ -42,8 +40,8 @@ public class EnemyTrackerMissile : MonoBehaviour
     {
         if(other.tag == "laser")
         {
-            _missileAnim.SetTrigger("HitPlayer");
             _missileAudio.Play();
+            Destroy(GetComponent<Collider2D>());
             Destroy(this.gameObject);
             Destroy(other.gameObject);
             Player.lasers.Remove(other.gameObject);
@@ -51,13 +49,13 @@ public class EnemyTrackerMissile : MonoBehaviour
         else if(other.tag == "Player")
         {
             Player player = GameObject.FindGameObjectWithTag("Player").GetComponent<Player>();
-            _missileAnim.SetTrigger("HitPlayer");
+            Destroy(GetComponent<Collider2D>());
+            Destroy(this.gameObject);
             _missileAudio.Play();
             player.Damage();
         }
         else if(other.tag == "LaserSaber")
         {
-            _missileAnim.SetTrigger("HitPlayer");
             _missileAudio.Play();
         }
     }

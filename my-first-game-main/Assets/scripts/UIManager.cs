@@ -48,6 +48,8 @@ public class UIManager : MonoBehaviour
     public int enemies;
 
     SpawnManager _spawn;
+
+    private Text _winnerText;
    
     void Start()
     {
@@ -77,6 +79,8 @@ public class UIManager : MonoBehaviour
         WaveUpdate();
 
         StartCoroutine(WaveDisplay());
+
+        _winnerText.gameObject.SetActive(false);
 
     }
 
