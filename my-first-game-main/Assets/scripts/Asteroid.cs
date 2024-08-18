@@ -71,8 +71,8 @@ public class Asteroid : MonoBehaviour
             _spawnManager.StartCoroutine("SpawnLaserSaberPowerUp");
             _spawnManager.StartCoroutine("SpawnAmmoThief");
             
-            Destroy(other.gameObject);
             Player.lasers.Remove(other.gameObject);
+            Destroy(other.gameObject);
         }
     }
 

@@ -50,21 +50,24 @@ public class NimbleEnemy : Enemy
         {
             foreach (GameObject laser in Player.lasers)
             {
-                Vector3 laserPos = laser.transform.position;
-
-
-                if (Vector3.Distance(transform.position, laserPos) < _dangerDist)
+                if (laser != null)
                 {
+                    Vector3 laserPos = laser.transform.position;
 
 
-                    if (laserPos.x > transform.position.x)
+                    if (Vector3.Distance(transform.position, laserPos) < _dangerDist)
                     {
-                        transform.Translate(Vector3.left * 3.0f * Time.deltaTime);
-                    }
 
-                    if (laserPos.x < transform.position.x)
-                    {
-                        transform.Translate(Vector3.right * 3.0f * Time.deltaTime);
+
+                        if (laserPos.x > transform.position.x)
+                        {
+                            transform.Translate(Vector3.left * 3.0f * Time.deltaTime);
+                        }
+
+                        if (laserPos.x < transform.position.x)
+                        {
+                            transform.Translate(Vector3.right * 3.0f * Time.deltaTime);
+                        }
                     }
                 }
             }

@@ -38,8 +38,8 @@ public class EnemyBomb : MonoBehaviour
         else if(other.tag == "laser")
         {
             Explosion();
-            Destroy(other.gameObject);
             Player.lasers.Remove(other.gameObject);
+            Destroy(other.gameObject);
         }
     }
 

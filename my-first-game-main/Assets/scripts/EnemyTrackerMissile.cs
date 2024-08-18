@@ -43,8 +43,8 @@ public class EnemyTrackerMissile : MonoBehaviour
             _missileAudio.Play();
             Destroy(GetComponent<Collider2D>());
             Destroy(this.gameObject);
-            Destroy(other.gameObject);
             Player.lasers.Remove(other.gameObject);
+            Destroy(other.gameObject);
         }
         else if(other.tag == "Player")
         {

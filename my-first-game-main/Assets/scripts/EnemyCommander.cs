@@ -116,8 +116,8 @@ public class EnemyCommander : MonoBehaviour
                 Debug.LogError("Player is null");
             }
 
-            Destroy(other.gameObject);
             Player.lasers.Remove(other.gameObject);
+            Destroy(other.gameObject);
 
             EnemyDeath();
         }

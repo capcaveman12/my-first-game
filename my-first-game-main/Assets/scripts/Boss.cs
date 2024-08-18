@@ -47,6 +47,8 @@ public class Boss : MonoBehaviour
         if(health == 0)
         {
             OnBossDeath();
+            _bossIsDead = true;
+            UIManager.isBossDead = true;
         }
 
         health = UIManager.bossHealthInt;
@@ -76,12 +78,14 @@ public class Boss : MonoBehaviour
         {
             if(_isShieldActive == true)
             {
+                Player.lasers.Remove(other.gameObject);
                 Destroy(other.gameObject);
                 return;
             }
             else
             {
                 Damage();
+                Player.lasers.Remove(other.gameObject);
                 Destroy(other.gameObject);
             }
         }

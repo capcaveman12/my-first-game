@@ -79,7 +79,7 @@ public class SpawnManager : MonoBehaviour
       else if(enemiesSpawned == 40 && enemiesLeft == 0)
         {
             StopCoroutine(SpawnRoutineThree());
-            StartCoroutine(SpawnRoutineBoss());
+            SpawnRoutineBoss();
         }
     }
 
@@ -136,7 +136,7 @@ public class SpawnManager : MonoBehaviour
         }
     }
 
-    IEnumerator SpawnRoutineBoss()
+    private void SpawnRoutineBoss()
     {
         level = 4;
         enemiesLeft = 10;
@@ -147,14 +147,14 @@ public class SpawnManager : MonoBehaviour
         _boss.transform.parent = _enemyContainer.transform;
         enemiesSpawned++;
         UIManager.bossIsSpawned = true;
-        while (_stopSpawn == false && enemiesSpawned >= 40 && enemiesSpawned < 51)
+        /*while (_stopSpawn == false && enemiesSpawned >= 40 && enemiesSpawned < 51)
         {
             yield return new WaitForSeconds(5.0f);
             Vector3 PosToSpawn = new Vector3(Random.Range(8f, 8f), 7, 0);
             GameObject _NewEnemy = Instantiate(_enemies[Random.Range(0, 6)], PosToSpawn, Quaternion.identity);
             _NewEnemy.transform.parent = _enemyContainer.transform;
             enemiesSpawned++;
-        }
+        }*/
     }
 
     public void OnPlayerDeath()

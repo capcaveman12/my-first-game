@@ -94,10 +94,7 @@ public class UIManager : MonoBehaviour
 
         _winnerText.gameObject.SetActive(false);
 
-        if(isBossDead == true)
-        {
-            StartCoroutine(PlayerWins());
-        }
+
 
     }
 
@@ -121,6 +118,11 @@ public class UIManager : MonoBehaviour
         if(_bossHealth.value == 0)
         {
             _bossHealth.gameObject.SetActive(false);
+        }
+
+        if (isBossDead == true)
+        {
+            StartCoroutine(PlayerWins());
         }
     }
 
