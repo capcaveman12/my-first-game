@@ -56,14 +56,6 @@ public class Bomber : Enemy
 
     public void DropBomb()
     {
-        
-
-
-       
-        
-            
             Instantiate(_bomb, transform.position + new Vector3(0, 2, 0), Quaternion.identity);
-        
-        
     }
 }

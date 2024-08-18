@@ -32,6 +32,13 @@ public class UIManager : MonoBehaviour
     [SerializeField]
     Scrollbar _scrollbar;
 
+    [SerializeField]
+    Slider _bossHealth;
+
+    public static int bossHealthInt = 100;
+
+    public static bool bossIsSpawned = false;
+
     private Player _player;
 
     [SerializeField]
@@ -49,7 +56,10 @@ public class UIManager : MonoBehaviour
 
     SpawnManager _spawn;
 
+    [SerializeField]
     private Text _winnerText;
+
+    public static bool isBossDead = false;
    
     void Start()
     {
@@ -76,11 +86,18 @@ public class UIManager : MonoBehaviour
 
        _enemiesText.text = "Enemies: " + 10;
 
+        _bossHealth.gameObject.SetActive(false);
+
         WaveUpdate();
 
         StartCoroutine(WaveDisplay());
 
         _winnerText.gameObject.SetActive(false);
+
+        if(isBossDead == true)
+        {
+            StartCoroutine(PlayerWins());
+        }
 
     }
 
@@ -92,6 +109,18 @@ public class UIManager : MonoBehaviour
         {
             Player.ThrustersOverheat();
             StartCoroutine(ThrusterWarningText());
+        }
+
+        if(bossIsSpawned == true)
+        {
+            _bossHealth.gameObject.SetActive(true);
+        }
+
+        _bossHealth.value = bossHealthInt;
+
+        if(_bossHealth.value == 0)
+        {
+            _bossHealth.gameObject.SetActive(false);
         }
     }
 
@@ -125,8 +154,9 @@ public class UIManager : MonoBehaviour
     {
         
         StartCoroutine(GameOverFlicker());
-        _gameOverTxt.gameObject.SetActive(true);
+        //_gameOverTxt.gameObject.SetActive(true);//
         _restartText.gameObject.SetActive(true);
+        StartCoroutine(StopFlicker());
     }
 
     public IEnumerator GameOverFlicker()
@@ -138,6 +168,13 @@ public class UIManager : MonoBehaviour
             yield return new WaitForSeconds(0.5f);
             _gameOverTxt.gameObject.SetActive(false);
         }
+    }
+
+    private IEnumerator StopFlicker()
+    {
+        yield return new WaitForSeconds(3.0f);
+        StopCoroutine(GameOverFlicker());
+        SpawnManager._stopSpawn = false;
     }
 
     public void AmmoCount(int ammo)
@@ -192,5 +229,14 @@ public class UIManager : MonoBehaviour
     {
         wave += 1;
         _waveText.text = "WAVE: " + wave.ToString();
+    }
+
+    IEnumerator PlayerWins()
+    {
+        _winnerText.gameObject.SetActive(true);
+        yield return new WaitForSeconds(.5f);
+        _winnerText.gameObject.SetActive(false);
+        yield return new WaitForSeconds(.5f);
+        _winnerText.gameObject.SetActive(true);
     }
 }

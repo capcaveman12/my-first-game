@@ -146,6 +146,7 @@ public class SpawnManager : MonoBehaviour
         GameObject _boss = Instantiate(_theBoss, new Vector3(0, 10, 0), Quaternion.identity);
         _boss.transform.parent = _enemyContainer.transform;
         enemiesSpawned++;
+        UIManager.bossIsSpawned = true;
         while (_stopSpawn == false && enemiesSpawned >= 40 && enemiesSpawned < 51)
         {
             yield return new WaitForSeconds(5.0f);

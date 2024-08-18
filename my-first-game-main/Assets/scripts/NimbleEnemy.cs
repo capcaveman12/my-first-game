@@ -44,28 +44,32 @@ public class NimbleEnemy : Enemy
 
     private void Dodge()
     {
-        Vector3 laserPos = new Vector3(0, 0, 0);
+        //Vector3 laserPos = new Vector3(0, 0, 0);//
 
-        if(Player.lasers.Count != 0)
+        if (Player.lasers.Count != 0)
         {
-            foreach(GameObject laser in Player.lasers)
+            foreach (GameObject laser in Player.lasers)
             {
-                laserPos = laser.transform.position;
-            }
+                Vector3 laserPos = laser.transform.position;
 
-            if(Vector3.Distance(transform.position, laserPos) < _dangerDist)
-            {
-                if(laserPos.x > transform.position.x)
-                {
-                    transform.Translate(Vector3.left * 3.0f * Time.deltaTime);
-                }
 
-                if(laserPos.x < transform.position.x)
+                if (Vector3.Distance(transform.position, laserPos) < _dangerDist)
                 {
-                    transform.Translate(Vector3.right * 3.0f * Time.deltaTime);
+
+
+                    if (laserPos.x > transform.position.x)
+                    {
+                        transform.Translate(Vector3.left * 3.0f * Time.deltaTime);
+                    }
+
+                    if (laserPos.x < transform.position.x)
+                    {
+                        transform.Translate(Vector3.right * 3.0f * Time.deltaTime);
+                    }
                 }
             }
         }
+        
         
     }
 }

@@ -7,7 +7,7 @@ public class Boss : MonoBehaviour
     [SerializeField]
     bool _isShieldActive = false;
 
-    public int health = 100;
+    public int health;
 
     GameObject _placement;
 
@@ -37,6 +37,7 @@ public class Boss : MonoBehaviour
         StartCoroutine(Shield());
         _bossAudioSrce.clip = _laserShotClip;
         _bossAnim = GetComponent<Animator>();
+        health = UIManager.bossHealthInt;
     }
 
     // Update is called once per frame
@@ -47,6 +48,8 @@ public class Boss : MonoBehaviour
         {
             OnBossDeath();
         }
+
+        health = UIManager.bossHealthInt;
     }
 
     IEnumerator Shield()
@@ -64,7 +67,7 @@ public class Boss : MonoBehaviour
 
     private void Damage()
     {
-        health -= 10;
+        UIManager.bossHealthInt -= 10;
     }
 
     private void OnTriggerEnter2D(Collider2D other)
