@@ -119,5 +119,7 @@ public class Boss : MonoBehaviour
         _bossAnim.SetTrigger("OnEnemyDeath");
         Destroy(this.gameObject, 3.0f);
         _bossIsDead = true;
+        SpawnManager._stopSpawn = true;
+        GameManager.playerWon = true;
     }
 }

@@ -240,5 +240,7 @@ public class UIManager : MonoBehaviour
         _winnerText.gameObject.SetActive(false);
         yield return new WaitForSeconds(.5f);
         _winnerText.gameObject.SetActive(true);
+        yield return new WaitForSeconds(3.0f);
+        StopCoroutine(PlayerWins());
     }
 }

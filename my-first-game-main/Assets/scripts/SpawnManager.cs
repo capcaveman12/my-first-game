@@ -12,7 +12,7 @@ public class SpawnManager : MonoBehaviour
     [SerializeField]
     private GameObject _enemyContainer;
 
-    static public bool _stopSpawn = false;
+    public static bool _stopSpawn = false;
 
     [SerializeField]
     public GameObject[] _powerUps;
