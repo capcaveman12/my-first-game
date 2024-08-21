@@ -9,6 +9,9 @@ public class Bomber : Enemy
 
     GameObject _player;
 
+    [SerializeField]
+    GameObject _enemyLaser;
+
     public override void Start()
     {
         _player = GameObject.FindGameObjectWithTag("Player");
@@ -35,7 +38,7 @@ public class Bomber : Enemy
 
         if(other.tag == "Barrier")
         {
-            DropBomb();
+            ReverseLaser();
         }
     }
 
@@ -54,8 +57,9 @@ public class Bomber : Enemy
         base.EnemyDeath();
     }
 
-    public void DropBomb()
+    private void ReverseLaser()
     {
-            Instantiate(_bomb, transform.position + new Vector3(0, 2, 0), Quaternion.identity);
+        Instantiate(_enemyLaser, transform.position + new Vector3(0, 2, 0), Quaternion.identity);
+        
     }
 }

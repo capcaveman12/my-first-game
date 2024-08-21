@@ -11,10 +11,13 @@ public class GameManager : MonoBehaviour
 
     public static bool playerWon = false;
 
+    SpawnManager spawnMan;
+
 
     private void Start()
     {
         Player.playerDeath += GameOver;
+        spawnMan = GameObject.Find("spawnmanager").GetComponent<SpawnManager>();
     }
     // Update is called once per frame
     void Update()
@@ -34,7 +37,8 @@ public class GameManager : MonoBehaviour
         if(Input.GetKeyDown(KeyCode.R) && playerWon == true)
         {
             SceneManager.LoadScene(1);
-            SpawnManager._stopSpawn = false;
+            spawnMan.WinRestart();
+            
         }
     }
 

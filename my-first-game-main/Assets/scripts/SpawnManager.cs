@@ -222,4 +222,12 @@ public class SpawnManager : MonoBehaviour
         enemiesLeft--;
         _uiMan.EnemyUpdate();
     }
+
+    public void WinRestart()
+    {
+        enemiesSpawned = 0;
+        enemiesLeft = 10;
+        _stopSpawn = false;
+        StopAllCoroutines();
+    }
 }

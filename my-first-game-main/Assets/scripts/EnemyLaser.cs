@@ -9,10 +9,17 @@ public class EnemyLaser : MonoBehaviour
     [SerializeField]
     private float _speed = 8.0f;
 
+    public static Vector3 direction;
+
+    private void Start()
+    {
+        direction = Vector3.down;
+    }
+
     // Update is called once per frame
     void Update()
     {
-        transform.Translate(Vector3.down * _speed * Time.deltaTime);
+        transform.Translate(direction * _speed * Time.deltaTime);
 
         if (transform.position.y <= -8)
         {
@@ -23,4 +30,10 @@ public class EnemyLaser : MonoBehaviour
             }
         }
     }
+
+    public void ReverseDirection()
+    {
+        direction = Vector3.up;
+    }
+
 }

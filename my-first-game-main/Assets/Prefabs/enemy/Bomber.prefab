@@ -365,3 +365,5 @@ MonoBehaviour:
   _enemyLaserPrefab: {fileID: 8382091520990204235, guid: 25d598fb0930e304ca8cda4d75451cb9,
     type: 3}
   _bomb: {fileID: 7904535177839242072, guid: cb4a826ce0414134980fc997b3b34d9a, type: 3}
+  _enemyLaser: {fileID: 665379013407620701, guid: 47f5c0d1321990a4aaf869715e7f5c9f,
+    type: 3}
