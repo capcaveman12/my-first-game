@@ -462,14 +462,13 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _isShieldActive: 0
   health: 100
-  projectiles:
-  - {fileID: 8382091520990204235, guid: 25d598fb0930e304ca8cda4d75451cb9, type: 3}
-  - {fileID: 9160159668369431765, guid: 2309dfc177c20824c81f53823384dacf, type: 3}
-  - {fileID: 3979559955938202272, guid: d82a67553116462419617fa79a9570b7, type: 3}
+  _laser: {fileID: 8382091520990204235, guid: 25d598fb0930e304ca8cda4d75451cb9, type: 3}
   _bossAudioSrce: {fileID: 7541343686818260384}
   _laserShotClip: {fileID: 8300000, guid: 75676f361bdfeaf41a46623e95df3dbc, type: 3}
   _explosionSound: {fileID: 8300000, guid: a885c043fab7e46438bba03ba9dab6bc, type: 3}
   _bossIsDead: 0
+  _meteor: {fileID: 1463375311746864206, guid: a0126116235e5864a95008f45f77de31, type: 3}
+  _drone: {fileID: 7933541322583249772, guid: a27672b3ecd00294f93350ead114edbc, type: 3}
 --- !u!1 &9056876563352172370
 GameObject:
   m_ObjectHideFlags: 0

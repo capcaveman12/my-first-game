@@ -138,23 +138,18 @@ public class SpawnManager : MonoBehaviour
 
     private void SpawnRoutineBoss()
     {
-        level = 4;
-        enemiesLeft = 10;
-        _uiMan.EnemyUpdate();
-        _uiMan.WaveUpdate();
-        _uiMan.StartCoroutine("WaveDisplay");
-        GameObject _boss = Instantiate(_theBoss, new Vector3(0, 10, 0), Quaternion.identity);
-        _boss.transform.parent = _enemyContainer.transform;
-        enemiesSpawned++;
-        UIManager.bossIsSpawned = true;
-        /*while (_stopSpawn == false && enemiesSpawned >= 40 && enemiesSpawned < 51)
+        if (enemiesSpawned == 40 && enemiesLeft == 0)
         {
-            yield return new WaitForSeconds(5.0f);
-            Vector3 PosToSpawn = new Vector3(Random.Range(8f, 8f), 7, 0);
-            GameObject _NewEnemy = Instantiate(_enemies[Random.Range(0, 6)], PosToSpawn, Quaternion.identity);
-            _NewEnemy.transform.parent = _enemyContainer.transform;
+            level = 4;
+            enemiesLeft = 10;
+            _uiMan.EnemyUpdate();
+            _uiMan.WaveUpdate();
+            _uiMan.StartCoroutine("WaveDisplay");
+            GameObject _boss = Instantiate(_theBoss, new Vector3(0, 10, 0), Quaternion.identity);
+            _boss.transform.parent = _enemyContainer.transform;
             enemiesSpawned++;
-        }*/
+            UIManager.bossIsSpawned = true;
+        }
     }
 
     public void OnPlayerDeath()
@@ -163,6 +158,7 @@ public class SpawnManager : MonoBehaviour
         StopAllCoroutines();
         enemiesSpawned = 0;
         enemiesLeft = 10;
+        level = 0;
         
     }
 
@@ -227,7 +223,9 @@ public class SpawnManager : MonoBehaviour
     {
         enemiesSpawned = 0;
         enemiesLeft = 10;
+        level = 0;
         _stopSpawn = false;
         StopAllCoroutines();
+        _uiMan.winnerText.gameObject.SetActive(false);
     }
 }

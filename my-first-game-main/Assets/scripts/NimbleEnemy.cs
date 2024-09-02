@@ -15,6 +15,18 @@ public class NimbleEnemy : Enemy
     {
         NormalMovement();
         Dodge();
+
+        float _position = transform.position.y;
+
+        if (_position <= -3.8f)
+        {
+            transform.position = new Vector3(Random.Range(-9.3f, 9.3f), 6.0f, 0);
+        }
+
+        if (_position == 13.0f || _position == -13.0f)
+        {
+            transform.position = new Vector3(Random.Range(-9.3f, 9.3f), Random.Range(6.0f, -6.0f), 0);
+        }
     }
 
     public override void NormalMovement()
@@ -67,6 +79,18 @@ public class NimbleEnemy : Enemy
                         if (laserPos.x < transform.position.x)
                         {
                             transform.Translate(Vector3.right * 3.0f * Time.deltaTime);
+                        }
+
+                        float _position = transform.position.y;
+
+                        if (_position <= -3.8f)
+                        {
+                            transform.position = new Vector3(Random.Range(-9.3f, 9.3f), 6.0f, 0);
+                        }
+
+                        if (_position == 13.0f || _position == -13.0f)
+                        {
+                            transform.position = new Vector3(Random.Range(-9.3f, 9.3f), Random.Range(6.0f, -6.0f), 0);
                         }
                     }
                 }

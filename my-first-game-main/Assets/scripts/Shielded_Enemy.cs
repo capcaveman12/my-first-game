@@ -42,7 +42,7 @@ public class Shielded_Enemy : Enemy
          }
 
      if(other.tag == "Player")
-        {
+     {
             if(_isShieldActive == true)
             {
                 _isShieldActive = false;
@@ -54,6 +54,19 @@ public class Shielded_Enemy : Enemy
             {
                 EnemyDeath();
                 player.Damage();
+            }
+     }
+
+     if (other.tag == "LaserSaber")
+        {
+            if (_isShieldActive == true)
+            {
+                _isShieldActive = false;
+                transform.GetChild(0).gameObject.SetActive(false);
+            }
+            else if (_isShieldActive == false)
+            {
+                EnemyDeath();
             }
         }
     }

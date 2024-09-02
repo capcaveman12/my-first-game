@@ -57,6 +57,8 @@ public class EnemyTrackerMissile : MonoBehaviour
         else if(other.tag == "LaserSaber")
         {
             _missileAudio.Play();
+            Destroy(GetComponent<Collider2D>());
+            Destroy(this.gameObject);
         }
     }
 }

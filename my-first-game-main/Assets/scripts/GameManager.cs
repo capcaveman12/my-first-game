@@ -38,6 +38,10 @@ public class GameManager : MonoBehaviour
         {
             SceneManager.LoadScene(1);
             spawnMan.WinRestart();
+            playerWon = false;
+            UIManager.bossIsSpawned = false;
+            UIManager.isBossDead = false;
+            
             
         }
     }

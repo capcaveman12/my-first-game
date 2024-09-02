@@ -18,6 +18,10 @@ TagManager:
   - Placement
   - EnemyMissile
   - Collectible
+  - DroneTarget1
+  - DroneTarget2
+  - DroneTarget3
+  - DroneTarget4
   layers:
   - Default
   - TransparentFX

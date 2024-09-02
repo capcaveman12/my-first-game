@@ -57,7 +57,7 @@ public class UIManager : MonoBehaviour
     SpawnManager _spawn;
 
     [SerializeField]
-    private Text _winnerText;
+    public Text winnerText;
 
     public static bool isBossDead = false;
    
@@ -92,7 +92,7 @@ public class UIManager : MonoBehaviour
 
         StartCoroutine(WaveDisplay());
 
-        _winnerText.gameObject.SetActive(false);
+        winnerText.gameObject.SetActive(false);
 
 
 
@@ -123,6 +123,11 @@ public class UIManager : MonoBehaviour
         if (isBossDead == true)
         {
             StartCoroutine(PlayerWins());
+        }
+
+        if(_player == null)
+        {
+            _bossHealth.gameObject.SetActive(false);
         }
     }
 
@@ -159,6 +164,7 @@ public class UIManager : MonoBehaviour
         //_gameOverTxt.gameObject.SetActive(true);//
         _restartText.gameObject.SetActive(true);
         StartCoroutine(StopFlicker());
+        _bossHealth.gameObject.SetActive(false);
     }
 
     public IEnumerator GameOverFlicker()
@@ -235,12 +241,14 @@ public class UIManager : MonoBehaviour
 
     IEnumerator PlayerWins()
     {
-        _winnerText.gameObject.SetActive(true);
+        winnerText.gameObject.SetActive(true);
         yield return new WaitForSeconds(.5f);
-        _winnerText.gameObject.SetActive(false);
+        winnerText.gameObject.SetActive(false);
         yield return new WaitForSeconds(.5f);
-        _winnerText.gameObject.SetActive(true);
+        winnerText.gameObject.SetActive(true);
         yield return new WaitForSeconds(3.0f);
+        winnerText.gameObject.SetActive(false);
+        _bossHealth.gameObject.SetActive(false);
         StopCoroutine(PlayerWins());
     }
 }
