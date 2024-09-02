@@ -70,11 +70,6 @@ public class Boss : MonoBehaviour
         else if(numberDrones == 0)
         {
             _isShieldActive = false;
-            StartCoroutine(SpawnDroneAgain());
-        }
-        else if(numberDrones == 4)
-        {
-            StopCoroutine(SpawnDroneAgain());
         }
     }
 
@@ -86,23 +81,6 @@ public class Boss : MonoBehaviour
         Instantiate(_drone, new Vector3(4.36f, 3.06f, 0), Quaternion.identity);
         Instantiate(_drone, new Vector3(-4.36f, 3.06f, 0), Quaternion.identity);
         numberDrones = 4;
-    }
-
-    IEnumerator SpawnDroneAgain()
-    {
-        while (numberDrones <= 4)
-        {
-            yield return new WaitForSeconds(10.0f);
-            Instantiate(_drone, new Vector3(8.83f, 3.06f, 0), Quaternion.identity);
-            yield return new WaitForSeconds(1.0f);
-            Instantiate(_drone, new Vector3(-8.83f, 3.06f, 0), Quaternion.identity);
-            yield return new WaitForSeconds(1.0f);
-            Instantiate(_drone, new Vector3(4.36f, 3.06f, 0), Quaternion.identity);
-            yield return new WaitForSeconds(1.0f);
-            Instantiate(_drone, new Vector3(-4.36f, 3.06f, 0), Quaternion.identity);
-            numberDrones = 4;
-            StopCoroutine(SpawnDroneAgain());
-        }
     }
 
     public void Shield()
