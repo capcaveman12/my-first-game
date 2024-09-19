@@ -45,7 +45,7 @@ public class EnemyCommander : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        StartCoroutine(Movement());
+        DiagonalMovement();
         float _position = transform.position.y;
 
         if (_position <= -3.8f)
@@ -59,28 +59,9 @@ public class EnemyCommander : MonoBehaviour
         }
     }
 
-    IEnumerator Movement()
+private void DiagonalMovement()
     {
-        MoveDown();
-        yield return new WaitForSeconds(Random.Range(2.0f, 5.0f));
-        MoveRight();
-        yield return new WaitForSeconds(Random.Range(2.0f, 5.0f));
-        MoveLeft();
-    }
-
-    private void MoveDown()
-    {
-        transform.Translate(Vector3.down * _speed * Time.deltaTime);
-    }
-
-    private void MoveRight()
-    {
-        transform.Translate(Vector3.right * _speed * Time.deltaTime);
-    }
-
-    private void MoveLeft()
-    {
-        transform.Translate(Vector3.left * _speed * Time.deltaTime);
+        transform.Translate(new Vector3(-1, -1, 0) * _speed * Time.deltaTime);
     }
 
     private void OnTriggerEnter2D(Collider2D other)

@@ -13,8 +13,6 @@ public class AmmoPlus : MonoBehaviour
     private void Start()
     {
         _player = GameObject.FindGameObjectWithTag("Player");
-
-        //Player.collectPwUp += TowardPlayer;//
     }
 
     // Update is called once per frame
